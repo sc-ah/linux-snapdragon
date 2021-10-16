@@ -36,3 +36,8 @@
 &rmi4_f12 {
 	touchscreen-y-mm = <148>;
 };
+
+&pmi8998_charger {
+	monitored-battery = <&battery>;
+};
+
