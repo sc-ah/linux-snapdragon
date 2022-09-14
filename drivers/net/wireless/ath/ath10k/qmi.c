@@ -655,7 +655,8 @@ static int ath10k_qmi_host_cap_send_sync(struct ath10k_qmi *qmi)
 	if (resp.resp.result != QMI_RESULT_SUCCESS_V01 &&
 	    resp.resp.error != QMI_ERR_NOT_SUPPORTED_V01) {
 		ath10k_err(ar, "host capability request rejected: %d\n", resp.resp.error);
-		ret = -EINVAL;
+		// ret = -EINVAL;
+		ret = 0;
 		goto out;
 	}
 
