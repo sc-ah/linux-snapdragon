@@ -510,6 +510,14 @@
 	status = "okay";
 };
 
+&pm8005_gpio {
+	gpio-line-names = 
+		"",					/* GPIO_1 */
+		"",					/* GPIO_2 */
+		"PM845_SLB",		/* GPIO_3 */
+		"";					/* GPIO_4 */
+};
+
 &pmi8998_wled {
 	qcom,current-limit-microamp = <20000>;
 	qcom,current-boost-limit = <970>;
@@ -522,7 +530,35 @@
 };
 
 &pm8998_gpio {
-	volume_up_gpio: pm8998-gpio6-state {
+	gpio-line-names = 
+		"",					/* GPIO_1  */
+		"",					/* GPIO_2  */
+		"WLAN_SW_CTRL",		/* GPIO_3  */
+		"",					/* GPIO_4  */
+		"",					/* GPIO_5  */
+		"VOL_UP_N",			/* GPIO_6  */
+		"",					/* GPIO_7  */
+		"",					/* GPIO_8  */
+		"CAM2_DVDD_EN",		/* GPIO_9  */
+		"GND",				/* GPIO_10 */
+		"CAMW_DVDD_EN",		/* GPIO_11 */
+		"GND",				/* GPIO_12 */
+		"",					/* GPIO_13 */
+		"",					/* GPIO_14 */
+		"",					/* GPIO_15 */
+		"",					/* GPIO_16 */
+		"",					/* GPIO_17 */
+		"SMB_STAT",			/* GPIO_18 */
+		"",					/* GPIO_19 */
+		"WIPWR_RST_N",		/* GPIO_20 */
+		"NFC_LABBCLK3_EN",	/* GPIO_21 */
+		"",					/* GPIO_22 */
+		"WCSS_PWR_REQ",		/* GPIO_23 */
+		"",					/* GPIO_24 */
+		"",					/* GPIO_25 */
+		"PM845_SLB";		/* GPIO_26 */
+
+	volume_up_gpio: pm8998_gpio6 {
 		pinconf {
 			qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
 			function = "normal";
@@ -582,6 +618,158 @@
 
 &tlmm {
 	gpio-reserved-ranges = <0 4>, <81 4>;
+
+	gpio-line-names = 
+		"NFC_ESE_SPI_MISO",		/* GPIO_0   */
+		"NFC_ESE_SPI_MOSI",		/* GPIO_1   */
+		"NFC_ESE_SPI_CLK",		/* GPIO_2   */
+		"NFC_ESE_SPI_CS_N",		/* GPIO_3   */
+		"DEBUG_UART_TX",		/* GPIO_4   */
+		"DEBUG_UART_RX",		/* GPIO_5   */
+		"LCD_RESET_N",			/* GPIO_6   */
+		"TP_VDDH_EN",			/* GPIO_7   */
+		"USB_SW_EN",			/* GPIO_8   */
+		"CAM2_RST_N",			/* GPIO_9   */
+		"LCD_TE",				/* GPIO_10  */
+		"NFC_WKUP",				/* GPIO_11  */
+		"NFC_ENABLE",			/* GPIO_12  */
+		"CAM_MCLK0",			/* GPIO_13  */
+		"RCV_PA_RST",			/* GPIO_14  */
+		"CAM_MCLK2",			/* GPIO_15  */
+		"CAM_MCLK3",			/* GPIO_16  */
+		"CCI_I2C_SDA0",			/* GPIO_17  */
+		"CCI_I2C_SCL0",			/* GPIO_18  */
+		"CCI_I2C_SDA1",			/* GPIO_19  */
+		"CCI_I2C_SCL1",			/* GPIO_20  */
+		"CAM_VDDIO_EN",			/* GPIO_21  */
+		"FL_STROBE_TRIG",		/* GPIO_22  */
+		"TP_VDDI_EN",			/* GPIO_23  */
+		"RCV_PA_INT",			/* GPIO_24  */
+		"SPKR_PA_RST",			/* GPIO_25  */
+		"CAMW_VCM_EN",			/* GPIO_26  */
+		"CAMT_VCM_EN",			/* GPIO_27  */
+		"CAM1_RST_N",			/* GPIO_28  */
+		"CAM2_AVDD_EN",			/* GPIO_29  */
+		"SPKR_PA_INT",			/* GPIO_30  */
+		"HIFI_PWR_ENP",			/* GPIO_31  */
+		"HIFI_PWR_ENN",			/* GPIO_32  */
+		"TS_I2C_SDA",			/* GPIO_33  */
+		"TS_I2C_SCL",			/* GPIO_34  */
+		"LCD_ID_DET1",			/* GPIO_35  */
+		"",						/* GPIO_36  */
+		"FP_SPI_RST",			/* GPIO_37  */
+		"CC_DIR",				/* GPIO_38  */
+		"FP_LDO_EN",			/* GPIO_39  */
+		"FP_ID",				/* GPIO_40  */
+		"NFC_I2C_SDA",			/* GPIO_41  */
+		"NFC_I2C_SCL",			/* GPIO_42  */
+		"SBU_MIC_OE",			/* GPIO_43  */
+		"SAR_INT",				/* GPIO_44  */
+		"BT_HCI_UART_CTS_N",	/* GPIO_45  */
+		"BT_HCI_UART_RFR_N",	/* GPIO_46  */
+		"BT_HCI_UART_TXD",		/* GPIO_47  */
+		"BT_HCI_UART_RXD",		/* GPIO_48  */
+		"USB_AUDIO_EN",			/* GPIO_49  */
+		"CAMW_OIS_EN",			/* GPIO_50  */
+		"SBU_UART_EN",			/* GPIO_51  */
+		"ERR_INT_N",			/* GPIO_52  */
+		"CODEC_INT2_N",			/* GPIO_53  */
+		"CODEC_INT1_N",			/* GPIO_54  */
+		"APPS_I2C10_SDA",		/* GPIO_55  */
+		"APPS_I2C10_SCL",		/* GPIO_56  */
+		"FORCED_USB_BOOT",		/* GPIO_57  */
+		"SPKR_I2S_BCK",			/* GPIO_58  */
+		"SPKR_I2S_WS",			/* GPIO_59  */
+		"SPKR_I2S_DOUT",		/* GPIO_60  */
+		"SPKR_I2S_DIN",			/* GPIO_61  */
+		"WP_SLEEP",				/* GPIO_62  */
+		"NFC_IRQ",				/* GPIO_63  */
+		"CODEC_RST_N",			/* GPIO_64  */
+		"CODEC_SPI_MISO",		/* GPIO_65  */
+		"CODEC_SPI_MOSI",		/* GPIO_66  */
+		"CODEC_SPI_CLK",		/* GPIO_67  */
+		"CODEC_SPI_CS_N",		/* GPIO_68  */
+		"",						/* GPIO_69  */
+		"CODEC_SLIMBUS_CLK",	/* GPIO_70  */
+		"CODEC_SLIMBUS_DATA0",	/* GPIO_71  */
+		"CODEC_SLIMBUS_DATA1",	/* GPIO_72  */
+		"BT_FM_SLIMBUS_DATA",	/* GPIO_73  */
+		"BT_FM_SLIMBUS_CLK",	/* GPIO_74  */
+		"",						/* GPIO_75  */
+		"",						/* GPIO_76  */
+		"CAMT_DVDD_EN",			/* GPIO_77  */
+		"WP_INT",				/* GPIO_78  */
+		"CAMT_AVDD_EN",			/* GPIO_79  */
+		"CAM0_RST_N",			/* GPIO_80  */
+		"FP_BLSP_SPI_MISO12",	/* GPIO_81  */
+		"FP_BLSP_SPI_MOSI12",	/* GPIO_82  */
+		"FP_BLSP_SPI_CLK12",	/* GPIO_83  */
+		"FP_BLSP_SPI_CS_N12",	/* GPIO_84  */
+		"AUDIO_I2C_SDA",		/* GPIO_85  */
+		"AUDIO_I2C_SCL",		/* GPIO_86  */
+		"CAMW_AVDD_EN",			/* GPIO_87  */
+		"NFC_DWL_REQ",			/* GPIO_88  */
+		"NFC_ESE_RSTN",			/* GPIO_89  */
+		"",						/* GPIO_90  */
+		"",						/* GPIO_91  */
+		"",						/* GPIO_92  */
+		"",						/* GPIO_93  */
+		"",						/* GPIO_94  */
+		"LCD_ID_DET2",			/* GPIO_95  */
+		"",						/* GPIO_96  */
+		"RFFE6_CLK",			/* GPIO_97  */
+		"RFFE6_DATA",			/* GPIO_98  */
+		"TS_RESET_N",			/* GPIO_99  */
+		"TP807",				/* GPIO_100 */
+		"TP812",				/* GPIO_101 */
+		"CAMW_AVDD_1P8_EN",		/* GPIO_102 */
+		"",						/* GPIO_103 */
+		"AUX_HPH_EN",			/* GPIO_104 */
+		"UIM2_DATA",			/* GPIO_105 */
+		"UIM2_CLK",				/* GPIO_106 */
+		"UIM2_RESET",			/* GPIO_107 */
+		"UIM2_PRESENT",			/* GPIO_108 */
+		"UIM1_DATA",			/* GPIO_109 */
+		"UIM1_CLK",				/* GPIO_110 */
+		"UIM1_RESET",			/* GPIO_111 */
+		"UIM1_PRESENT",			/* GPIO_112 */
+		"",						/* GPIO_113 */
+		"GRFC8",				/* GPIO_114 */
+		"",						/* GPIO_115 */
+		"NFC_ESE_PWR_REQ",		/* GPIO_116 */
+		"ACCEL_INT",			/* GPIO_117 */
+		"GYRO_INT",				/* GPIO_118 */
+		"",						/* GPIO_119 */
+		"",						/* GPIO_120 */
+		"FP_INT_N",				/* GPIO_121 */
+		"",						/* GPIO_122 */
+		"HALL_INTR2",			/* GPIO_123 */
+		"HALL_INTR1",			/* GPIO_124 */
+		"TS_INT_N",				/* GPIO_125 */
+		"",						/* GPIO_126 */
+		"GRFC3",				/* GPIO_127 */
+		"",						/* GPIO_128 */
+		"",						/* GPIO_129 */
+		"QLINK_REQ",			/* GPIO_130 */
+		"QLINK_EN",				/* GPIO_131 */
+		"GRFC2",				/* GPIO_132 */
+		"",						/* GPIO_133 */
+		"WMSS_RESET",			/* GPIO_134 */
+		"GRFC0",				/* GPIO_135 */
+		"GRFC1",				/* GPIO_136 */
+		"RFFE3_DATA",			/* GPIO_137 */
+		"RFFE3_CLK",			/* GPIO_138 */
+		"RFFE4_DATA",			/* GPIO_139 */
+		"RFFE4_CLK",			/* GPIO_140 */
+		"RFFE5_DATA",			/* GPIO_141 */
+		"RFFE5_CLK",			/* GPIO_142 */
+		"GNSS_EN",				/* GPIO_143 */
+		"WLAN_COEX_UART_TXD",	/* GPIO_144 */
+		"WLAN_COEX_UART_RXD",	/* GPIO_145 */
+		"",						/* GPIO_146 */
+		"",						/* GPIO_147 */
+		"RFFE1_DATA",			/* GPIO_148 */
+		"RFFE1_CLK";			/* GPIO_149 */
 
 	ts_reset_default: ts-reset-default {
 		pins = "gpio99";
