@@ -119,6 +119,13 @@
 		voltage-max-design-microvolt = <4400000>;
 	};
 
+	vph_pwr: vph-pwr-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vph_pwr";
+		regulator-min-microvolt = <3700000>;
+		regulator-max-microvolt = <3700000>;
+	};
+
 	vreg_tp_vddio: vreg-tp-vddio {
 		compatible = "regulator-fixed";
 		regulator-name = "vreg_tp_vddio";
@@ -146,6 +153,34 @@
 	pm8998-rpmh-regulators {
 		compatible = "qcom,pm8998-rpmh-regulators";
 		qcom,pmic-id = "a";
+
+		vdd-s1-supply = <&vph_pwr>;
+		vdd-s2-supply = <&vph_pwr>;
+		vdd-s3-supply = <&vph_pwr>;
+		vdd-s4-supply = <&vph_pwr>;
+		vdd-s5-supply = <&vph_pwr>;
+		vdd-s6-supply = <&vph_pwr>;
+		vdd-s7-supply = <&vph_pwr>;
+		vdd-s8-supply = <&vph_pwr>;
+		vdd-s9-supply = <&vph_pwr>;
+		vdd-s10-supply = <&vph_pwr>;
+		vdd-s11-supply = <&vph_pwr>;
+		vdd-s12-supply = <&vph_pwr>;
+		vdd-s13-supply = <&vph_pwr>;
+		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
+		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
+		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
+		vdd-l6-supply = <&vph_pwr>;
+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
+		vdd-l9-supply = <&vreg_bob>;
+		vdd-l10-l23-l25-supply = <&vreg_bob>;
+		vdd-l13-l19-l21-supply = <&vreg_bob>;
+		vdd-l16-l28-supply = <&vreg_bob>;
+		vdd-l18-l22-supply = <&vreg_bob>;
+		vdd-l20-l24-supply = <&vreg_bob>;
+		vdd-l26-supply = <&vreg_s3a_1p35>;
+		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
 
 		vreg_s2a_1p1: smps2 {
 			regulator-min-microvolt = <1100000>;
@@ -348,6 +383,8 @@
 		compatible = "qcom,pmi8998-rpmh-regulators";
 		qcom,pmic-id = "b";
 
+		vdd-bob-supply = <&vph_pwr>;
+
 		vreg_bob: bob {
 			regulator-min-microvolt = <3312000>;
 			regulator-max-microvolt = <3600000>;
@@ -359,6 +396,11 @@
 	pm8005-rpmh-regulators {
 		compatible = "qcom,pm8005-rpmh-regulators";
 		qcom,pmic-id = "c";
+
+		vdd-s1-supply = <&vph_pwr>;
+		vdd-s2-supply = <&vph_pwr>;
+		vdd-s3-supply = <&vph_pwr>;
+		vdd-s4-supply = <&vph_pwr>;
 
 		vreg_smp3c_0p6: smps3 {
 			regulator-min-microvolt = <600000>;
@@ -884,6 +926,7 @@
 &ufs_mem_hc {
 	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
 	vcc-supply = <&vreg_l20a_2p95>;
+	vccq2-supply = <&vreg_s4a_1p8>;
 	vcc-max-microamp = <800000>;
 	status = "okay";
 };
