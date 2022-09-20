@@ -147,6 +147,27 @@
 		regulator-max-microvolt = <1800000>;
 		regulator-always-on;
 	};
+
+    connector {
+        compatible = "usb-c-connector";
+        label = "USB-C";
+		power-role = "source";
+        data-role = "host";
+		vbus-supply = <&pmi8998_vbus>;
+		pd-disable;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				usb_con_hs: endpoint {
+					remote-endpoint = <&typec_hs>;
+				};
+			};
+		};
+    };
 };
 
 &apps_rsc {
@@ -561,6 +582,16 @@
 		"";					/* GPIO_4 */
 };
 
+&pmi8998_vbus {
+	// There's no pdphy support currently
+	regulator-always-on;
+	regulator-boot-on;
+
+	regulator-min-microamp = <1250000>;
+	regulator-max-microamp = <1250000>;
+	status = "okay";
+};
+
 &pmi8998_wled {
 	qcom,current-limit-microamp = <20000>;
 	qcom,current-boost-limit = <970>;
@@ -858,8 +889,22 @@
 		bias-pull-down;
 	};
 
+	usb_hs_active: usb_hs_active {
+		pins = "gpio8";
+		function = "atest_usb13";
+		drive-strength = <12>;
+		bias-pull-up;
+	};
+
+	usb_hs_suspend: usb_hs_suspend {
+		pins = "gpio8";
+		function = "atest_usb13";
+		drive-strength = <2>;
+		bias-pull-down;
+	};
+
 	wcd_intr_default: wcd-intr-default {
-		pins = "goui54";
+		pins = "gpio54";
 		function = "gpio";
 		input-enable;
 		bias-pull-down;
@@ -892,7 +937,15 @@
 };
 
 &usb_1_dwc3 {
-	dr_mode = "peripheral";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	dr_mode = "host";
+	tx-fifo-resize;
+	snps,has-lpm-erratum;
+	snps,hird-threshold = /bits/ 8 <0x10>;
+	snps,usb3_lpm_capable;
+	// workaround for USB timeout issue
+	snps,usb2-lpm-disable;
 
 	/* Fastest mode for USB 2 */
 	maximum-speed = "high-speed";
@@ -900,9 +953,22 @@
 	/* Remove USB3 phy */
 	phys = <&usb_1_hsphy>;
 	phy-names = "usb2-phy";
+
+	port@0 {
+		reg = <0>;
+
+		typec_hs: endpoint {
+			remote-endpoint = <&usb_con_hs>;
+		};
+	};
 };
 
 &usb_1_hsphy {
+	// Hardware workaround for USB HS enumeration issue
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&usb_hs_active>;
+	pinctrl-1 = <&usb_hs_suspend>;
+
 	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
 	vdda-pll-supply = <&vreg_l12a_1p8>;
 	vdd-supply = <&vreg_l1a_0p875>;
