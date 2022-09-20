@@ -9,8 +9,8 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		pm8150b_vbus: dcdc@1100 {
-			compatible = "qcom,pm8150b-vbus-reg";
+		pmi8998_vbus: dcdc@1100 {
+			compatible = "qcom,pmi8998-vbus-reg";
 			status = "disabled";
 			reg = <0x1100>;
 		};
