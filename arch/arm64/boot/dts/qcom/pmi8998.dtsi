@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 #include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/spmi/spmi.h>
+#include <dt-bindings/input/qcom,spmi-haptics.h>
 #include <dt-bindings/usb/typec/tcpm/qcom,pmic-usb-pdphy.h>
 
 &spmi_bus {
