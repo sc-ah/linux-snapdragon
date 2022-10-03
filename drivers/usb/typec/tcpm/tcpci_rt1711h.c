@@ -11,6 +11,7 @@
 #include <linux/i2c.h>
 #include <linux/interrupt.h>
 #include <linux/gpio/consumer.h>
+#include <linux/regulator/consumer.h>
 #include <linux/usb/tcpci.h>
 #include <linux/usb/tcpm.h>
 #include <linux/regmap.h>
@@ -353,6 +354,10 @@ static int rt1711h_probe(struct i2c_client *client,
 	chip->dev = &client->dev;
 	i2c_set_clientdata(client, chip);
 
+	chip->vbus = devm_regulator_get(chip->dev, "vbus");
+	if (IS_ERR(chip->vbus))
+		return PTR_ERR(chip->vbus);
+
 	ret = rt1711h_sw_reset(chip);
 	if (ret < 0)
 		return ret;
@@ -369,6 +374,7 @@ static int rt1711h_probe(struct i2c_client *client,
 	chip->data.init = rt1711h_init;
 	chip->data.set_vbus = rt1711h_set_vbus;
 	chip->data.set_vconn = rt1711h_set_vconn;
+	chip->data.set_vbus = rt1711h_set_vbus;
 	chip->data.start_drp_toggling = rt1711h_start_drp_toggling;
 	chip->tcpci = tcpci_register_port(chip->dev, &chip->data);
 	if (IS_ERR_OR_NULL(chip->tcpci))
