@@ -582,6 +582,10 @@
 		"";					/* GPIO_4 */
 };
 
+&pm8150b_pdphy {
+	status = "okay";
+};
+
 &pmi8998_vbus {
 	// There's no pdphy support currently
 	regulator-always-on;
