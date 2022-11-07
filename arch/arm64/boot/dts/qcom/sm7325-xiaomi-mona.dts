@@ -15,7 +15,7 @@
 
 / {
 	model = "Snapdragon 778G Generic";
-	compatible = "qcom,sm7325", "qcom,sc7280";
+	compatible = "xiaomi,mona", "qcom,sm7325", "qcom,sc7280";
 	chassis-type = "handset";
 	
 	reserved-memory {
@@ -70,7 +70,7 @@
 			compatible = "simple-framebuffer";
 			reg = <0x0 0xE1000000 0x0 (1080 * 2400 * 4)>;
 			width = <1080>;
-			height = <2248>;
+			height = <2400>;
 			stride = <(1080 * 4)>;
 			format = "a8r8g8b8";
 		};
